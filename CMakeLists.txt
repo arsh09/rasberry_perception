@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   tf
   ros_numpy
+  image_geometry
   std_msgs
   sensor_msgs
   geometry_msgs
