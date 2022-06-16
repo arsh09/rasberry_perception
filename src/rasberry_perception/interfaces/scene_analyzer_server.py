@@ -73,7 +73,7 @@ Repurposed from scene_analyser from FastPick
 
 class MasksPredictor:
 
-    def __init__(self, model_file, config_file, metadata_file, num_classes  = 3 , accuracy = 0.1):
+    def __init__(self, model_file, config_file, metadata_file, num_classes  = 3 , accuracy = 0.01):
         
         self.counter = 1
         self.accuracy = accuracy 
