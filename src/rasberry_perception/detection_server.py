@@ -17,11 +17,18 @@ def _default_arg_parser(args=None):
     parser.add_argument('--backend', type=str, help="Which backend to use.", default=None)
     parsed_args, unknown = parser.parse_known_args() #this is an 'internal' method
 
+    # if the server node is launched from using roslaunch
+    # these args are prepended. So remove them beforehand.
+    unknown = [arg for arg in unknown if "__name:=" not in arg ]
+    unknown = [arg for arg in unknown if "__log:=" not in arg ]
+ 
     # Add unrecognised args as kwargs for passing the detection server
     unknown_parser = argparse.ArgumentParser()
+
     for arg in unknown:
         if arg.startswith(("-", "--")):
             unknown_parser.add_argument(arg, type=str)
+
     unknown_args = unknown_parser.parse_args(unknown)
     unknown_kwargs = {a: getattr(unknown_args, a) for a in vars(unknown_args)} if len(vars(unknown_args)) else None
 
