@@ -24,8 +24,7 @@ import cv2
 @DETECTION_REGISTRY.register_detection_backend("scene_analyzer_server")  # (1)
 class SceneAnalyzerServer(BaseDetectionServer):  # (2)
     # These args are passed from ros parameters when running the backend
-    def __init__(self, model_path="/home/arshad/robot_highway/data_ws/src/raspberry_fruit_mapping/berry_tracker/models/fp_model.pth", metadata_path="/home/arshad/robot_highway/data_ws/src/raspberry_fruit_mapping/berry_tracker/models/metadata.pkl", cfg_path="COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml" ): 
-
+    def __init__(self, model_path, metadata_path, cfg_path ): 
 
         # initialize mask predictor
         self.busy = True
@@ -133,6 +132,7 @@ class MasksPredictor:
         pred_masks = outputs["instances"].get_fields()["pred_masks"].to("cpu").numpy()
         pred_boxes = outputs["instances"].get_fields()["pred_boxes"].to("cpu").tensor.numpy()
 
+        
         prediction_output = {
             "pred_classes" : pred_classes,
             "scores" : scores,

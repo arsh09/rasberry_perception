@@ -57,6 +57,7 @@ class Server:
             backend_kwargs = {}
             for arg_name in required_args:
                 p_arg = "~" + arg_name
+                rospy.logerr("Search for: {}".format( p_arg ) )
                 if rospy.has_param(p_arg):
                     assigned_parameters.append(p_arg)
                     backend_kwargs[arg_name] = rospy.get_param(p_arg)
@@ -71,8 +72,9 @@ class Server:
         # Ensure the required args exist
         _missing_args = [a for a in required_args if a not in backend_kwargs]
         if len(_missing_args) > 0:
+            _missing_args_str = ", ".join(_missing_args)
             raise rospy.ROSException("Cannot initialise without the '{}' parameter(s) for the '{}' backend".format(
-                ", ".join(_missing_args), backend
+                _missing_args_str, backend
             ))
 
         self.server_args = backend_kwargs

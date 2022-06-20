@@ -21,7 +21,7 @@ def _default_arg_parser(args=None):
     # these args are prepended. So remove them beforehand.
     unknown = [arg for arg in unknown if "__name:=" not in arg ]
     unknown = [arg for arg in unknown if "__log:=" not in arg ]
- 
+    
     # Add unrecognised args as kwargs for passing the detection server
     unknown_parser = argparse.ArgumentParser()
 
@@ -41,6 +41,7 @@ def __detection_server_runner():
 
     service_name = default_service_name
     _node_name = service_name + "_server"
+    
     rospy.init_node(_node_name)
 
     server = Server(backend=args.backend, backend_kwargs=args_kwargs, service_name=service_name)
