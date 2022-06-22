@@ -19,8 +19,7 @@ def _default_arg_parser(args=None):
 
     # if the server node is launched from using roslaunch
     # these args are prepended. So remove them beforehand.
-    unknown = [arg for arg in unknown if "__name:=" not in arg ]
-    unknown = [arg for arg in unknown if "__log:=" not in arg ]
+    unknown = [arg for arg in unknown if "__name:=" not in arg or "__log:=" not in arg]
     
     # Add unrecognised args as kwargs for passing the detection server
     unknown_parser = argparse.ArgumentParser()

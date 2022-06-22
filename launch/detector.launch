@@ -9,11 +9,11 @@
     </group>
 -->
 
-    <arg name="image_ns" default="/camera/camera1/color"/>
-    <arg name="depth_ns" default="/camera/camera1/aligned_depth_to_color"/> <!--/camera/aligned_depth_to_color"-->
+    <arg name="image_ns" default=""/>
+    <arg name="depth_ns" default=""/>
     <arg name="score" default="0.3"/>
-    <arg name="show_vis" default="true"/>
-    <arg name="publish_source" default="true"/>
+    <arg name="show_vis" default="false"/>
+    <arg name="publish_source" default="false"/>
 
     <!-- client -->
     <node pkg="rasberry_perception" name="rasberry_perception_detector" type="detection_client.py" output="screen" respawn="true">

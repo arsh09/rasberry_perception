@@ -57,7 +57,6 @@ class Server:
             backend_kwargs = {}
             for arg_name in required_args:
                 p_arg = "~" + arg_name
-                rospy.logerr("Search for: {}".format( p_arg ) )
                 if rospy.has_param(p_arg):
                     assigned_parameters.append(p_arg)
                     backend_kwargs[arg_name] = rospy.get_param(p_arg)
