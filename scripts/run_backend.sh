@@ -74,7 +74,7 @@ if docker image inspect "$image_name" >/dev/null 2>&1 ; then
     echo "Starting $image_name"
     ROS_URI="${ROS_MASTER_URI:-"http://localhost:11311/"}"
     ROS_LOCAL_IP="${ROS_IP:-"127.0.0.1"}"
-    docker run --network host --gpus all -e ROS_MASTER_URI=${ROS_URI} -e ROS_IP=${ROS_LOCAL_IP} --name $1_backend --rm -it $image_name
+    docker run --network host -e ROS_MASTER_URI=${ROS_URI} -e ROS_IP=${ROS_LOCAL_IP} --name $1_backend --rm -it $image_name
 else
     echo "No valid container for backend ${image_name} can be started"
     exit 1
