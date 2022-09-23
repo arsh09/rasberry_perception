@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #  Raymond Kirk (Tunstill) Copyright (c) 2020
 #  Email: ray.tunstill@gmail.com

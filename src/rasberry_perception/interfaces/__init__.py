@@ -8,6 +8,6 @@ from .detectron2 import Detectron2Server
 from .gazebo_berries import GazeboRenderedBerriesServer
 from .fruitcast import FruitCastServer
 
-from .scene_analyzer_server import SceneAnalyzerServer
+# from .scene_analyzer_server import SceneAnalyzerServer
 
-__all__ = ["FruitCastServer", "GazeboRenderedBerriesServer", "Detectron2Server", "DefaultDetectionServer", "SceneAnalyzerServer"]
+__all__ = ["FruitCastServer", "GazeboRenderedBerriesServer", "Detectron2Server", "DefaultDetectionServer"] #, "SceneAnalyzerServer"]

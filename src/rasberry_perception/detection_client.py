@@ -31,7 +31,7 @@ class RunClientOnTopic:
         self.score_thresh = score_thresh
         self._service_name = service_name
         self.namespace = rospy.get_name() + "/" #"rasberry_perception/"
-        self.depth_enabled = bool(depth_namespace)
+        self.depth_enabled = False #bool(depth_namespace)
         self.visualisation_enabled = visualisation_enabled
         self.publish_source = publish_source
 
@@ -96,7 +96,7 @@ class RunClientOnTopic:
                 self.box_depth_info_pub = rospy.Publisher(self.namespace + "vis/bbox_points/camera_info", CameraInfo, queue_size=1)
 
         # Start subscription to the relevant topics
-        sync_queue, sync_thresh = 1, 0.1
+        sync_queue, sync_thresh = 1, 10#1, 0.1
         rospy.loginfo("Waiting for topics with time synchroniser (queue {}, {}s tolerance) on '{}'".format(
             sync_queue, sync_thresh, ', '.join([s.topic for s in subscribers])
         ))
@@ -371,9 +371,12 @@ def _get_detections_for_topic():
     p_vis = rospy.get_param('~show_vis', False)
     p_source = rospy.get_param('~publish_source', False)
 
+
     rospy.loginfo("Camera Topic to Detection ROS: image_namespace={}, depth_namespace={}, score_thresh={}, "
                   "visualisation_enabled={}, publish_source={}".format(p_image_ns, p_depth_ns, p_score, p_vis,
-                                                                       p_source))
+                    p_source))
+
+    rospy.loginfo("{} {}".format( bool(p_depth_ns), len(p_depth_ns) , p_depth_ns) )                                                       
 
     try:
         detector = RunClientOnTopic(image_namespace=p_image_ns, depth_namespace=p_depth_ns, score_thresh=p_score,
